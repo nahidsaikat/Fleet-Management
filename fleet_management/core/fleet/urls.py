@@ -1,16 +1,11 @@
-from django.urls import path
+from django.conf.urls import url, include
 from .views import FleetViewSet
+from rest_framework.routers import DefaultRouter
 
-app_name = 'core'
+
+router = DefaultRouter()
+router.register(r'fleet', FleetViewSet)
 
 urlpatterns = [
-    path('fleet/', FleetViewSet.as_view({'get': 'list'}), name='fleet')
+    url(r'^', include(router.urls)),
 ]
-
-# from django.conf.urls import include, url
-# from .views import FleetViewSet
-# from rest_framework.routers import DefaultRouter
-#
-# router = DefaultRouter()
-# router.register(r'fleet', FleetViewSet)
-# urlpatterns = router.urls
