@@ -1,4 +1,4 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets
 
 from .models import Fleet
 from .serializers import FleetSerializer
@@ -6,7 +6,6 @@ from .serializers import FleetSerializer
 class FleetViewSet(viewsets.ModelViewSet):
     queryset = Fleet.objects.all()
     serializer_class = FleetSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save()
