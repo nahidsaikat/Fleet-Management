@@ -7,5 +7,5 @@ router = DefaultRouter()
 router.register(r'vehicle', VehicleViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url(r'^', include((router.urls, 'core'), namespace='vehicle')),
 ]

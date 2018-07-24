@@ -7,5 +7,5 @@ router = DefaultRouter()
 router.register(r'fleet', FleetViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url(r'^', include((router.urls, 'core'), namespace='fleet')),
 ]
