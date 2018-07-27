@@ -1,8 +1,10 @@
 from django.urls import reverse
+from django.contrib.auth.models import User
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
 from .models import Requisition
 from .serializers import RequisitionSerializer
+from core.vehicle.models import Vehicle
 
 
 class BaseViewTest(APITestCase):
@@ -11,14 +13,19 @@ class BaseViewTest(APITestCase):
     @staticmethod
     def create_vehicle(serial="", status=""):
         if serial != "" and status != "":
-            Requisition.objects.create(serial=serial, status=status)
+            return Vehicle.objects.create(serial=serial, status=status)
+
+    @staticmethod
+    def create_requisition(vehicle=None, from_date="", from_time="", to_date="", to_time="", status="", requisition_by=None):
+        if vehicle != "" and from_date != "":
+            Requisition.objects.create(vehicle=vehicle, from_date=from_date, from_time=from_time, to_date=to_date, to_time=to_time, status=status, requisition_by=requisition_by)
 
     def setUp(self):
         # add test data
-        self.create_vehicle("1230", "available")
-        self.create_vehicle("1231", "available")
-        self.create_vehicle("1232", "available")
-        self.create_vehicle("1233", "available")
+        vehicle = self.create_vehicle("1230", "available")
+        user = User.objects.create(username='nahid', password='123456789', email='nahidsaikatft40@gmail.com')
+
+        self.create_requisition(vehicle, "2018-07-27", "14:00:00", "2018-07-27", "16:00:00", "pending", user)
 
 
 class GetAllVehicleTest(BaseViewTest):
@@ -30,7 +37,7 @@ class GetAllVehicleTest(BaseViewTest):
         """
         # hit the API endpoint
         response = self.client.get(
-            reverse("core:vehicle")
+            reverse("core:requisition")
         )
         # fetch the data from db
         expected = Requisition.objects.all()

@@ -1,24 +1,29 @@
 from django.urls import reverse
+from django.contrib.auth.models import User
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
 from .models import Vehicle
 from .serializers import VehicleSerializer
+from core.fleet.models import Fleet
 
 
 class BaseViewTest(APITestCase):
     client = APIClient()
 
     @staticmethod
-    def create_vehicle(serial="", status=""):
-        if serial != "" and status != "":
-            Vehicle.objects.create(serial=serial, status=status)
+    def create_vehicle(fleet=None, serial="", status="", user=None):
+        if fleet and serial != "" and status != "" and user:
+            Vehicle.objects.create(fleet=fleet, serial=serial, status=status, driver=user)
 
     def setUp(self):
         # add test data
-        self.create_vehicle("1230", "available")
-        self.create_vehicle("1231", "available")
-        self.create_vehicle("1232", "available")
-        self.create_vehicle("1233", "available")
+        user = User.objects.create(username='saikat', password='0123456789', email='nahidsaikat@gmail.com')
+        fleet = Fleet.objects.first()
+
+        self.create_vehicle(fleet, "1230", "available", user)
+        self.create_vehicle(fleet, "1231", "available", user)
+        self.create_vehicle(fleet, "1232", "available", user)
+        self.create_vehicle(fleet, "1233", "available", user)
 
 
 class GetAllVehicleTest(BaseViewTest):
