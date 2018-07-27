@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import Vehicle
+from .models import Comment
 
 
-class VehicleSerializer(serializers.ModelSerializer):
+class CommentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Vehicle
-        fields = ('id', 'serial', 'fleet', 'status', 'driver')
+        model = Comment
+        fields = ('id', 'table_name', 'table_id', 'comments', 'user')

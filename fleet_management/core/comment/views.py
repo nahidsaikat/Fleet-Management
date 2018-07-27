@@ -1,11 +1,11 @@
 from rest_framework import viewsets
 
-from .models import Vehicle
-from .serializers import VehicleSerializer
+from .models import Comment
+from .serializers import CommentSerializer
 
-class VehicleViewSet(viewsets.ModelViewSet):
-    queryset = Vehicle.objects.all()
-    serializer_class = VehicleSerializer
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
 
     def perform_create(self, serializer):
         serializer.save()

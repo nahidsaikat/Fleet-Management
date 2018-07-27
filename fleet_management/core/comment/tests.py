@@ -2,28 +2,26 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
-from .models import Vehicle
-from .serializers import VehicleSerializer
-from core.fleet.models import Fleet
+from .models import Comment
+from .serializers import CommentSerializer
 
 
 class BaseViewTest(APITestCase):
     client = APIClient()
 
     @staticmethod
-    def create_vehicle(fleet=None, serial="", status="", user=None):
-        if fleet and serial != "" and status != "" and user:
-            Vehicle.objects.create(fleet=fleet, serial=serial, status=status, driver=user)
+    def create_vehicle(table_name=None, table_id="", comments="", user=None):
+        if table_name != "" and table_id != "" and comments != "" and user:
+            Comment.objects.create(table_name=table_name, table_id=table_id, comments=comments, user=user)
 
     def setUp(self):
         # add test data
-        user = User.objects.create(username='saikat', password='0123456789', email='nahidsaikat@gmail.com')
-        fleet = Fleet.objects.first()
+        user = User.objects.first()
 
-        self.create_vehicle(fleet, "1230", "available", user)
-        self.create_vehicle(fleet, "1231", "available", user)
-        self.create_vehicle(fleet, "1232", "available", user)
-        self.create_vehicle(fleet, "1233", "available", user)
+        self.create_vehicle("core_fleet", "1", "available", user)
+        self.create_vehicle("core_fleet", "2", "available", user)
+        self.create_vehicle("core_fleet", "3", "available", user)
+        self.create_vehicle("core_fleet", "4", "available", user)
 
 
 class GetAllVehicleTest(BaseViewTest):
@@ -35,10 +33,10 @@ class GetAllVehicleTest(BaseViewTest):
         """
         # hit the API endpoint
         response = self.client.get(
-            reverse("core:vehicle")
+            reverse("core:comment")
         )
         # fetch the data from db
-        expected = Vehicle.objects.all()
-        serialized = VehicleSerializer(expected, many=True)
+        expected = Comment.objects.all()
+        serialized = CommentSerializer(expected, many=True)
         self.assertEqual(response.data, serialized.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
