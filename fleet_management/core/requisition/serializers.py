@@ -4,5 +4,5 @@ from .models import Requisition
 
 class RequisitionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Vehicle
+        model = Requisition
         fields = ('id', 'serial', 'fleet', 'status', 'driver')
