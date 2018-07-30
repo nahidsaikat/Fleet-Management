@@ -1,11 +1,8 @@
 from rest_framework import viewsets
 
-from .models import Requisition
-from .serializers import RequisitionSerializer
+from .models import RequisitionLog
+from .serializers import RequisitionLogSerializer
 
-class RequisitionViewSet(viewsets.ModelViewSet):
-    queryset = Requisition.objects.all()
-    serializer_class = RequisitionSerializer
-
-    def perform_create(self, serializer):
-        serializer.save()
+class RequisitionLogViewSet(viewsets.ModelViewSet):
+    queryset = RequisitionLog.objects.all()
+    serializer_class = RequisitionLogSerializer
