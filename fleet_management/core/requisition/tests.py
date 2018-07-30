@@ -5,15 +5,21 @@ from rest_framework.views import status
 from .models import Requisition
 from .serializers import RequisitionSerializer
 from core.vehicle.models import Vehicle
+from core.fleet.models import Fleet
 
 
 class BaseViewTest(APITestCase):
     client = APIClient()
 
     @staticmethod
-    def create_vehicle(serial="", status=""):
-        if serial != "" and status != "":
-            return Vehicle.objects.create(serial=serial, status=status)
+    def create_fleet(name=""):
+        if name != "":
+            return Fleet.objects.create(name=name)
+
+    @staticmethod
+    def create_vehicle(fleet=None, serial="", status="", driver=None):
+        if fleet and serial != "" and status != "" and driver:
+            return Vehicle.objects.create(fleet=fleet, serial=serial, status=status, driver=driver)
 
     @staticmethod
     def create_requisition(vehicle=None, from_date="", from_time="", to_date="", to_time="", status="", requisition_by=None):
@@ -22,8 +28,9 @@ class BaseViewTest(APITestCase):
 
     def setUp(self):
         # add test data
-        vehicle = self.create_vehicle("1230", "available")
         user = User.objects.create(username='nahid', password='123456789', email='nahidsaikatft40@gmail.com')
+        fleet = self.create_fleet("like glue")
+        vehicle = self.create_vehicle(fleet, "1230", "available", user)
 
         self.create_requisition(vehicle, "2018-07-27", "14:00:00", "2018-07-27", "16:00:00", "pending", user)
 

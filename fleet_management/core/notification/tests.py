@@ -16,12 +16,12 @@ class BaseViewTest(APITestCase):
 
     def setUp(self):
         # add test data
-        users = User.objects.add()
-        first_user = users[0]
-        second_user = users[1]
+        users = User.objects.all()
+        first_user = User.objects.create(username='nahid', password='123456789', email='nahidsaikatft40@gmail.com')
+        second_user = User.objects.create(username='saiakt', password='123456789', email='saikat@gmail.com')
 
-        self.create_vehicle("core_fleet one", first_user.id, second_user.ic, 'core_requisition', 1, False)
-        self.create_vehicle("core_fleet two", first_user.id, second_user.ic, 'core_requisition', 2, False)
+        self.create_vehicle("core_fleet one", first_user.id, second_user.id, 'core_requisition', 1, False)
+        self.create_vehicle("core_fleet two", first_user.id, second_user.id, 'core_requisition', 2, False)
 
 
 class GetAllVehicleTest(BaseViewTest):
