@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from core.requisition.models import Requisition
+from core.vehicle.models import Vehicle
 
 
 class VehicleLog(models.Model):
-    requisition = models.ForeignKey(Requisition, on_delete=models.CASCADE)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=False)
+    driver = models.ForeignKey(User, on_delete=models.CASCADE)
     from_status = models.CharField(max_length=30)
-    to_status = models.CharField(max_length=30)
-    date_time = models.DateTimeField(null=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    to_status = models.CharField(max_length=30, null=False)
+    remarks = models.CharField()
