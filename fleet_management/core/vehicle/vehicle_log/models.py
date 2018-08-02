@@ -9,4 +9,4 @@ class VehicleLog(models.Model):
     driver = models.ForeignKey(User, on_delete=models.CASCADE)
     from_status = models.CharField(max_length=30)
     to_status = models.CharField(max_length=30, null=False)
-    remarks = models.CharField()
+    remarks = models.CharField(max_length=255)
