@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 
-from .models import RequisitionLog
-from .serializers import RequisitionLogSerializer
+from .models import VehicleLog
+from .serializers import VehicleLogSerializer
 
-class RequisitionLogViewSet(viewsets.ModelViewSet):
-    queryset = RequisitionLog.objects.all()
-    serializer_class = RequisitionLogSerializer
+class VehicleLogViewSet(viewsets.ModelViewSet):
+    queryset = VehicleLog.objects.all()
+    serializer_class = VehicleLogSerializer

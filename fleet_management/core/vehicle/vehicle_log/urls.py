@@ -1,11 +1,11 @@
 from django.conf.urls import url, include
-from .views import RequisitionLogViewSet
+from .views import VehicleLogViewSet
 from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
-router.register(r'requisition_log', RequisitionLogViewSet)
+router.register(r'vehicle_log', VehicleLogViewSet)
 
 urlpatterns = [
-    url(r'^', include((router.urls, 'core'), namespace='requisition_log')),
+    url(r'^', include((router.urls, 'core'), namespace='vehicle_log')),
 ]

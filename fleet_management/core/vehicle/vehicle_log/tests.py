@@ -2,8 +2,8 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
-from .models import RequisitionLog, Requisition
-from .serializers import RequisitionLogSerializer
+from .models import VehicleLog, Requisition
+from .serializers import VehicleLogSerializer
 from core.vehicle.models import Vehicle
 from core.fleet.models import Fleet
 
@@ -29,7 +29,7 @@ class BaseViewTest(APITestCase):
     @staticmethod
     def create_log(requisition=None, from_status="", to_status="", date_time=None, user=None):
         if requisition and from_status and to_status and date_time and user:
-            return RequisitionLog.objects.create(requisition=requisition, from_status=from_status, to_status=to_status, date_time=date_time, user=user)
+            return VehicleLog.objects.create(requisition=requisition, from_status=from_status, to_status=to_status, date_time=date_time, user=user)
 
     def setUp(self):
         # add test data
@@ -52,7 +52,7 @@ class GetAllVehicleTest(BaseViewTest):
             reverse("core:requisition_log")
         )
         # fetch the data from db
-        expected = RequisitionLog.objects.all()
-        serialized = RequisitionLogSerializer(expected, many=True)
+        expected = VehicleLog.objects.all()
+        serialized = VehicleLogSerializer(expected, many=True)
         self.assertEqual(response.data, serialized.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)

@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import RequisitionLog
+from .models import VehicleLog
 
 
-class RequisitionLogSerializer(serializers.ModelSerializer):
+class VehicleLogSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RequisitionLog
+        model = VehicleLog
         fields = ('id', 'requisition', 'from_status', 'to_status', 'date_time', 'user')
