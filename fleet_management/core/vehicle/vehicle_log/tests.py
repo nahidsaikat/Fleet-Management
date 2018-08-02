@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
-from .models import VehicleLog, Requisition
+from .models import VehicleLog
 from .serializers import VehicleLogSerializer
 from core.vehicle.models import Vehicle
 from core.fleet.models import Fleet
@@ -22,23 +22,17 @@ class BaseViewTest(APITestCase):
             return Vehicle.objects.create(fleet=fleet, serial=serial, status=status, driver=driver)
 
     @staticmethod
-    def create_requisition(vehicle=None, from_date="", from_time="", to_date="", to_time="", status="", requisition_by=None):
-        if vehicle != "" and from_date != "":
-           return  Requisition.objects.create(vehicle=vehicle, from_date=from_date, from_time=from_time, to_date=to_date, to_time=to_time, status=status, requisition_by=requisition_by)
-
-    @staticmethod
-    def create_log(requisition=None, from_status="", to_status="", date_time=None, user=None):
-        if requisition and from_status and to_status and date_time and user:
-            return VehicleLog.objects.create(requisition=requisition, from_status=from_status, to_status=to_status, date_time=date_time, user=user)
+    def create_log(vehicle=None, driver=None, from_status="", to_status="", remarks=""):
+        if vehicle and driver and from_status and to_status and remarks:
+            return VehicleLog.objects.create(vehicle=vehicle,driver=driver, from_status=from_status, to_status=to_status, remarks=remarks)
 
     def setUp(self):
         # add test data
         user = User.objects.create(username='nahid', password='123456789', email='nahidsaikatft40@gmail.com')
         fleet = self.create_fleet("like glue")
         vehicle = self.create_vehicle(fleet, "1230", "available", user)
-        requisition = self.create_requisition(vehicle, "2018-07-27", "14:00:00", "2018-07-27", "16:00:00", "pending", user)
 
-        self.create_log(requisition, 'pending', 'approved', '2018-07-27 14:00:00', user)
+        self.create_log(vehicle, user, 'pending', 'approved', 'something that is remarks')
 
 class GetAllVehicleTest(BaseViewTest):
 
@@ -49,7 +43,7 @@ class GetAllVehicleTest(BaseViewTest):
         """
         # hit the API endpoint
         response = self.client.get(
-            reverse("core:requisition_log")
+            reverse("core:vehicle_log")
         )
         # fetch the data from db
         expected = VehicleLog.objects.all()
