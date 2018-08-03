@@ -8,5 +8,5 @@
 
 ### Dependencies
 + python==3.7
-+ django==2.0.6
++ django==2.1
 + djangorestframework==3.8.2
