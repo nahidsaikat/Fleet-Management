@@ -8,5 +8,5 @@ router.register(r'vehicle', VehicleViewSet)
 
 urlpatterns = [
     path(r'api/', include((router.urls, 'core'), namespace='vehicle')),
-    path(r'api/log/', include('core.vehicle.vehicle_log.urls')),
+    path(r'api/log/', include(('core.vehicle.vehicle_log.urls', 'core'), namespace='vehicle_log')),
 ]

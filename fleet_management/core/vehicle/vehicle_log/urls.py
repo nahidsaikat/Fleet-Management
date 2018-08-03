@@ -7,5 +7,5 @@ router = DefaultRouter()
 router.register(r'vehicle_log', VehicleLogViewSet)
 
 urlpatterns = [
-    path(r'', include((router.urls, 'core'), namespace='vehicle_log')),
+    path(r'', include(router.urls)),
 ]

@@ -7,5 +7,5 @@ router = DefaultRouter()
 router.register(r'requisition_log', RequisitionLogViewSet)
 
 urlpatterns = [
-    path(r'', include((router.urls, 'core'))),
+    path(r'', include(router.urls)),
 ]
