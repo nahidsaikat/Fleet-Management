@@ -1,4 +1,4 @@
-from django.conf.urls import url, include
+from django.urls import path, include
 from .views import VehicleViewSet
 from rest_framework.routers import DefaultRouter
 
@@ -7,5 +7,6 @@ router = DefaultRouter()
 router.register(r'vehicle', VehicleViewSet)
 
 urlpatterns = [
-    url(r'^', include((router.urls, 'core'), namespace='vehicle')),
+    path(r'api/', include((router.urls, 'core'), namespace='vehicle')),
+    path(r'api/log/', include('core.vehicle.vehicle_log.urls')),
 ]
