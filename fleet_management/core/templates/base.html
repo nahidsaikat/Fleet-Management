@@ -7,12 +7,17 @@
         {% block header %}{% endblock %}
     </title>
 </head>
+
 <body>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    {% block script %}{% endblock %}
+
     {% block header_content %}{% endblock %}
     {% block left_content %}{% endblock %}
     {% block content %}{% endblock %}
     {% block right_content %}{% endblock %}
     {% block footer_content %}{% endblock %}
-    {% block script %}{% endblock %}
+
 </body>
 </html>
