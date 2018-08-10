@@ -9,6 +9,3 @@ def api_root(request, format=None):
         'fleet': reverse('fleet', request=request, format=format),
         'vehicle': reverse('vehicle', request=request, format=format)
     })
-
-def login(request, **kwargs):
-    pass

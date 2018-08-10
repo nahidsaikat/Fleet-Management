@@ -10,5 +10,7 @@
 + python==3.7
 + django==2.1
 + djangorestframework==3.8.2
-+ vuejs==2.5.17
-+ vue-resource==1.5.1
+
+### Frontend
++ vuejs - 2.5.17
++ vue-resource - 1.5.1
