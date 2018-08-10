@@ -1,9 +1,23 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block link %}{% endblock %}
+    <title>
+        {% block header %}{% endblock %}
+    </title>
+</head>
 
-{% block title %}{{ title|default:"Login" }}{% endblock %}
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    {% block script %}{% endblock %}
 
-{% block content %}
-{% endblock %}
+    {% block header_content %}{% endblock %}
+    {% block left_content %}{% endblock %}
+    {% block content %}{% endblock %}
+    {% block right_content %}{% endblock %}
+    {% block footer_content %}{% endblock %}
 
-{% block script %}
-{% endblock %}
+</body>
+</html>
