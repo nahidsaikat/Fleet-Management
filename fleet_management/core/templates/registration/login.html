@@ -3,10 +3,30 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <h2>Login</h2>
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Login</button>
-    </form>
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="medium-3 cell"></div>
+            <div class="medium-6 cell">
+                <form class="log-in-form" method="post">
+                    {% csrf_token %}
+                    <h4 class="text-center">Log In</h4>
+
+                    <label>Username
+                        <input type="text" placeholder="somebody" name="username" autofocus="" required="" id="id_username">
+                    </label>
+
+                    <label>Password
+                        <input type="password" name="password" required="" id="id_password" placeholder="Password">
+                    </label>
+
+                    <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
+
+                    <p><input type="submit" class="button expanded" value="Log in"></p>
+
+                    <p class="text-center"><a href="#">Forgot your password?</a></p>
+                </form>
+            </div>
+            <div class="medium-3 cell"></div>
+        </div>
+    </div>
 {% endblock %}
