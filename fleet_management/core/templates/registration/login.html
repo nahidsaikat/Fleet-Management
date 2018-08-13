@@ -1,8 +1,15 @@
-{% extends 'base.html' %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href = "{% static 'foundation-6.4.2/css/foundation.css' %}">
+    <link rel="stylesheet" href="{% static 'foundation-6.4.2/css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Login</title>
+</head>
 
-{% block title %}Login{% endblock %}
-
-{% block content %}
+<body>
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-4 cell"></div>
@@ -29,4 +36,5 @@
             <div class="medium-4cell"></div>
         </div>
     </div>
-{% endblock %}
+</body>
+</html>
