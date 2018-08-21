@@ -1,13 +1,14 @@
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Fleet Manager</title>
-    <script src="node_modules/vue/dist/vue.js"></script>
-    <script src="node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="{% static 'node_modules/vue/dist/vue.js' %}"></script>
+    <script src="{% static 'node_modules/vue-router/dist/vue-router.js' %}"></script>
 </head>
 <body>
     <div id="app">
-        <h1>{{ greeting }}</h1>
+        <h1>[[ greeting ]]</h1>
         <p>
             <router-link to="/foo">Go to Foo</router-link>
             <router-link to="/bar">Go to Bar</router-link>
@@ -31,6 +32,7 @@
         var app = new Vue({
             router: router,
             el: '#app',
+            delimiters: ['[[', ']]'],
             data: {
                 greeting: 'Welcome to your Vue.js app!'
             },
