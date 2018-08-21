@@ -13,4 +13,5 @@
 
 ### Frontend
 + vuejs - 2.5.17
++ vue-router - 3.0.1
 + vue-resource - 1.5.1
