@@ -6,35 +6,29 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
 </head>
 
 <body>
-    <div class="grid-container">
-        <div class="grid-x grid-padding-x">
-            <div class="medium-4 cell"></div>
-            <div class="medium-4 cell">
-                <form class="log-in-form" method="post">
-                    {% csrf_token %}
-                    <h4 class="text-center">Log In</h4>
 
-                    <label>Username
-                        <input type="text" placeholder="somebody" name="username" autofocus="" required="" id="id_username">
-                    </label>
-
-                    <label>Password
-                        <input type="password" name="password" required="" id="id_password" placeholder="Password">
-                    </label>
-
-                    <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
-
-                    <p><input type="submit" class="button expanded" value="Log in"></p>
-
-                    <p class="text-center"><a href="#">Forgot your password?</a></p>
-                </form>
-            </div>
-            <div class="medium-4cell"></div>
+    <form class="form-signin">
+        <div class="text-center">
+            <img class="mb-4 logo img-responsive" src='{% static "assets/saikat.jpg" %}' alt="Fleet Management" width="82" height="82">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         </div>
-    </div>
+
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+            </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
 </body>
 </html>
