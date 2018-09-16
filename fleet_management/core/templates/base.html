@@ -19,16 +19,8 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-{#    {% if request.user.is_authenticated %}#}
-{#    here#}
-{#    {% else %}#}
-{#    nothing#}
-{#    {% endif %}#}
+    {% block nav_bar %}{% endblock %}
     <div class="container">
-        <div id="banner" class="page-header">
-            <h1>{% block title %}{{ apptitle }}{% endblock %}</h1>asdf
-        </div>
-        {% block nav_bar %}{% endblock %}
 
         {% if messages %}
             <div class="messages">
