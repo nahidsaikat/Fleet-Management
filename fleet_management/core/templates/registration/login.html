@@ -9,26 +9,29 @@
 </head>
 
 <body>
-
-    <form class="form-signin">
-        <div class="text-center">
-            <img class="mb-4 logo img-responsive" src='{% static "assets/saikat.jpg" %}' alt="Fleet Management" width="82" height="82">
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        </div>
-
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+    <div class="container">
+        <form class="form-signin" method="post">
+            {% csrf_token %}
+            <div class="text-center">
+                <img class="mb-4 logo img-responsive" src='{% static "assets/saikat.jpg" %}' alt="Fleet Management" width="82" height="82">
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+
+            <label for="inputUsername" class="sr-only">Username</label>
+            <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus name="username">
+
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+                </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+        <a class="btn btn-lg btn-link btn-block" type="submit" href="{% url '' %}">Register</a>
+    </div>
 
 </body>
 </html>
