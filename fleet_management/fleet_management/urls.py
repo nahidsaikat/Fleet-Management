@@ -21,8 +21,8 @@ from core import views
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
+    path('authentication/', include('authentication.urls')),
     path('', include('django.contrib.auth.urls')),
-    # path('signup/', views.signup, name='signup'),
     path('', include('core.urls')),
     path('', TemplateView.as_view(template_name='layout.html'), name='home'),
 ]
