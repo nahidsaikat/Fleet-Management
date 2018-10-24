@@ -30,7 +30,13 @@
                 </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
-        <a class="btn btn-lg btn-link btn-block" type="submit" href="{% url '' %}">Register</a>
+        <div class="row">
+            <div class="col-lg-5"></div>
+            <div class="col-lg-2">
+                <a class="btn btn-lg btn-link btn-block" type="submit" href="{% url 'authentication:signup' %}">Register</a>
+            </div>
+            <div class="col-lg-5"></div>
+        </div>
     </div>
 
 </body>
